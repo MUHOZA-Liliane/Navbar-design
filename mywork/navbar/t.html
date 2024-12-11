@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./coding.css">
+    <title>Bookmark Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="umutwe"><i class="fa fa-bookmark" aria-hidden="true"></i> Bookmark Management System</h1>
+        <section>
+            <div class="bookmark">
+                <input type="text" id="websitename" placeholder="Website Name">
+                <input type="url" id="websiteUrl" placeholder="Website URL">
+                <button id="addBookmark">Add Bookmark</button>
+            </div>
+            <ul id="bookmarkList"></ul>
+        </section>
+    </div>
+
+    <script>
+        const bookmarkList = [];
+
+        document.getElementById('addBookmark').addEventListener('click', function () {
+            const name = document.getElementById('websitename').value;
+            const url = document.getElementById('websiteUrl').value;
+
+            if (name && url) {
+                const bookmark = { name, url };
+                bookmarkList.push(bookmark);
+                displayBookmarks();
+                clearInputs();
+            } else {
+                alert('Please fill in both fields');
+            }
+        });
+
+        function displayBookmarks() {
+            const list = document.getElementById('bookmarkList');
+            list.innerHTML = ''; // Clear the list
+            bookmarkList.forEach((bookmark, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <a href="${bookmark.url}" target="_blank">${bookmark.name}</a>
+                    <button onclick="editBookmark(${index})">Edit</button>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function editBookmark(index) {
+            const bookmark = bookmarkList[index];
+            document.getElementById('websitename').value = bookmark.name;
+            document.getElementById('websiteUrl').value = bookmark.url;
+
+            // Remove the bookmark from the list and update display
+            bookmarkList.splice(index, 1);
+            displayBookmarks();
+        }
+
+        function clearInputs() {
+            document.getElementById('websitename').value = '';
+            document.getElementById('websiteUrl').value = '';
+        }
+    </script>
+</body>
+
+</html>

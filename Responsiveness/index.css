@@ -1,0 +1,30 @@
+/* 
+body {
+
+    background-color: blue;
+    width: 200px;
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+}
+
+@media (max-width:500px) {
+
+    body{
+        background-color: brown;
+        width: 10px;
+    }
+}
+p1{
+    color: rgba(33, 33, 34, 0.493);
+} */
+
+div{
+    background-color: blue;
+    width: 500px;
+    height:70px;
+}
+button{
+ background-color: aqua;
+ width: px;
+}
